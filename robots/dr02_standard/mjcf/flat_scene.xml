@@ -1,0 +1,17 @@
+<mujoco model="dr02_flat_scene">
+  <option timestep="0.001" integrator="RK4"/>
+  <visual>
+    <global azimuth="135" elevation="-20"/>
+  </visual>
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1="0.22 0.24 0.25" rgb2="0.32 0.34 0.35"/>
+    <material name="grid" texture="grid" texrepeat="8 8" reflectance="0.15"/>
+  </asset>
+  <worldbody>
+    <light name="key_light" pos="0 -3 5" dir="0 3 -5" directional="true" diffuse="0.85 0.85 0.8" specular="0.25 0.25 0.25"/>
+    <light name="fill_light" pos="-3 2 3" dir="3 -2 -3" directional="true" diffuse="0.35 0.4 0.45" specular="0.05 0.05 0.05"/>
+    <light name="rim_light" pos="3 3 4" dir="-3 -3 -4" directional="true" diffuse="0.35 0.35 0.4" specular="0.15 0.15 0.15"/>
+    <geom name="floor" type="plane" group="2" size="20 20 0.05" material="grid" friction="0.9 0.02 0.001"/>
+  </worldbody>
+  <include file="dr02.xml"/>
+</mujoco>
