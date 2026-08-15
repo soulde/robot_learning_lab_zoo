@@ -12,5 +12,5 @@ Use the bundled MuJoCo viewer with:
 
 ```bash
 mujoco-gui robots/dr02_standard/mjcf/flat_scene.xml \
-  --config configs/dr02_init_control.json
+  --config soulde_robot_zoo/configs/dr02_init_control.json
 ```

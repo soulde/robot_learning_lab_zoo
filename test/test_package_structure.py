@@ -21,7 +21,9 @@ def _assert_complete_urdf(robot_dir: Path, urdf_name: str) -> None:
 
 def test_asset_package_owns_complete_dr02_models() -> None:
     assert (PACKAGE_ROOT / "__init__.py").is_file()
+    assert (PACKAGE_ROOT / "dr02.py").is_file()
     assert (PACKAGE_ROOT / "mujoco_gui.py").is_file()
+    assert (PACKAGE_ROOT / "configs" / "dr02_init_control.json").is_file()
     _assert_complete_urdf(ROBOTS_ROOT / "dr02_standard", "dr02_std.urdf")
     _assert_complete_urdf(ROBOTS_ROOT / "dr02_pro", "DR02-pro.urdf")
 
