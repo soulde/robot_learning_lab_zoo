@@ -5,7 +5,7 @@ import isaaclab.sim as sim_utils
 from isaaclab.actuators import ImplicitActuatorCfg
 from isaaclab.assets.articulation import ArticulationCfg
 
-from soulde_robot_zoo import ROBOTS_DIR
+from robot_lab_zoo import ROBOTS_DIR
 
 ROBOTERA_XBOT_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(

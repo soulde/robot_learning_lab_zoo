@@ -3,10 +3,10 @@
 from pathlib import Path
 
 
-SOULDE_ROBOT_ZOO_DIR = Path(__file__).resolve().parents[1]
-"""Root directory of the Soulde Robot Zoo extension."""
+ROBOT_LAB_ZOO_DIR = Path(__file__).resolve().parents[1]
+"""Root directory of the Robot Lab Zoo extension."""
 
-ROBOTS_DIR = SOULDE_ROBOT_ZOO_DIR / "robots"
+ROBOTS_DIR = ROBOT_LAB_ZOO_DIR / "robots"
 """Directory containing all robot descriptions."""
 
 CONFIGS_DIR = Path(__file__).resolve().parent / "configs"

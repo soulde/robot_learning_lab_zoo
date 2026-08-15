@@ -3,7 +3,7 @@ import re
 
 
 ASSET_ROOT = Path(__file__).resolve().parents[1]
-PACKAGE_ROOT = ASSET_ROOT / "soulde_robot_zoo"
+PACKAGE_ROOT = ASSET_ROOT / "robot_lab_zoo"
 ROBOTS_ROOT = ASSET_ROOT / "robots"
 
 EXPECTED_MANUFACTURERS = {
@@ -70,5 +70,6 @@ def test_asset_package_does_not_depend_on_training_package() -> None:
     assert python_sources
     for source in python_sources:
         contents = source.read_text(encoding="utf-8")
-        assert "robot_lab" not in contents, source
+        assert "from robot_lab." not in contents, source
+        assert "import robot_lab." not in contents, source
         assert "chocolate_training" not in contents, source

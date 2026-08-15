@@ -6,7 +6,7 @@ import os
 import isaaclab.sim as sim_utils
 from isaaclab.actuators import DCMotorCfg
 from isaaclab.assets.articulation import ArticulationCfg
-from soulde_robot_zoo import ROBOTS_DIR
+from robot_lab_zoo import ROBOTS_DIR
 
 
 def _require_user_tmp_dir() -> str:
