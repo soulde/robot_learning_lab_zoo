@@ -16,7 +16,7 @@ setup(
     maintainer=EXTENSION_DATA["package"]["maintainer"],
     description=EXTENSION_DATA["package"]["description"],
     keywords=EXTENSION_DATA["package"]["keywords"],
-    packages=["soulde_robot_zoo"],
+    packages=["soulde_robot_zoo", "soulde_robot_zoo.assets"],
     package_data={"soulde_robot_zoo": ["configs/*.json"]},
     install_requires=["mujoco>=3.10.0", "numpy>=1.23"],
     entry_points={"console_scripts": ["mujoco-gui=soulde_robot_zoo.mujoco_gui:main"]},
