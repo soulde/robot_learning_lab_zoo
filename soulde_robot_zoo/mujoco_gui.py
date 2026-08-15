@@ -38,8 +38,8 @@ def load_init_ctrl(model: mujoco.MjModel, config_path: Path | None) -> np.ndarra
     if not resolved_config_path.is_file():
         raise FileNotFoundError(f"Config file not found: {resolved_config_path}")
 
-    with resolved_config_path.open("r", encoding="utf-8") as f:
-        config = json.load(f)
+    with resolved_config_path.open("r", encoding="utf-8") as file:
+        config = json.load(file)
 
     ctrl_config = config.get("ctrl", {})
     if not isinstance(ctrl_config, dict):

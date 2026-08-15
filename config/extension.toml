@@ -1,0 +1,18 @@
+[package]
+version = "0.1.0"
+category = "isaaclab"
+readme = "README.md"
+title = "Soulde Robot Zoo"
+author = "Soulde Developers"
+maintainer = "Soulde Developers"
+description = "Robot descriptions and simulation assets for Isaac Lab and MuJoCo"
+repository = "https://github.com/soulde/soulde_robot_zoo"
+keywords = ["isaaclab", "asset", "robot", "mujoco", "dr02"]
+
+[dependencies]
+"isaaclab" = {}
+
+[[python.module]]
+name = "soulde_robot_zoo"
+
+[isaaclab_settings]
