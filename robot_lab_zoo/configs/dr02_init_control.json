@@ -1,8 +1,0 @@
-{
-  "ctrl": {
-    "left_knee_joint_position": 0.2,
-    "left_ankle_y_joint_position": -0.1,
-    "right_knee_joint_position": 0.2,
-    "right_ankle_y_joint_position": -0.1
-  }
-}

@@ -3,8 +3,10 @@ import re
 
 
 ASSET_ROOT = Path(__file__).resolve().parents[1]
-PACKAGE_ROOT = ASSET_ROOT / "robot_lab_zoo"
+PACKAGE_ROOT = ASSET_ROOT / "robot_learning_lab_zoo"
 ROBOTS_ROOT = ASSET_ROOT / "robots"
+ISAACLAB_ASSETS_ROOT = PACKAGE_ROOT / "assets" / "isaaclab"
+MJLAB_ASSETS_ROOT = PACKAGE_ROOT / "assets" / "mjlab"
 
 EXPECTED_MANUFACTURERS = {
     "agibot",
@@ -49,7 +51,8 @@ def _assert_complete_urdf(robot_dir: Path, urdf_name: str) -> None:
 
 def test_asset_package_owns_complete_dr02_models() -> None:
     assert (PACKAGE_ROOT / "__init__.py").is_file()
-    assert (PACKAGE_ROOT / "assets" / "deeprobotics.py").is_file()
+    assert (ISAACLAB_ASSETS_ROOT / "deeprobotics.py").is_file()
+    assert (MJLAB_ASSETS_ROOT / "unitree.py").is_file()
     assert (PACKAGE_ROOT / "mujoco_gui.py").is_file()
     assert (PACKAGE_ROOT / "configs" / "dr02_init_control.json").is_file()
     _assert_complete_urdf(ROBOTS_ROOT / "deeprobotics" / "dr02_standard_description", "dr02_std.urdf")
@@ -58,7 +61,9 @@ def test_asset_package_owns_complete_dr02_models() -> None:
 
 def test_zoo_contains_all_manufacturers_and_asset_modules() -> None:
     manufacturers = {path.name for path in ROBOTS_ROOT.iterdir() if path.is_dir()}
-    asset_modules = {path.name for path in (PACKAGE_ROOT / "assets").glob("*.py") if path.name != "__init__.py"}
+    asset_modules = {
+        path.name for path in ISAACLAB_ASSETS_ROOT.glob("*.py") if path.name != "__init__.py"
+    }
 
     assert manufacturers == EXPECTED_MANUFACTURERS
     assert asset_modules == EXPECTED_ASSET_MODULES

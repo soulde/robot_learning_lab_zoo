@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="edu_urdf">
+  <compiler angle="radian" boundmass="1e-06" boundinertia="1e-08" meshdir=".." />
+  <asset>
+    <mesh name="mesh_1" content_type="model/stl" file="meshes/BASE_LINK.STL" />
+    <mesh name="mesh_3" content_type="model/stl" file="meshes/FL_ABAD_LINK.STL" />
+    <mesh name="mesh_5" content_type="model/stl" file="meshes/FL_HIP_LINK.STL" />
+    <mesh name="mesh_7" content_type="model/stl" file="meshes/FL_KNEE_LINK.STL" />
+    <mesh name="mesh_9" content_type="model/stl" file="meshes/FL_FOOT_LINK.STL" />
+    <mesh name="mesh_11" content_type="model/stl" file="meshes/FR_ABAD_LINK.STL" />
+    <mesh name="mesh_13" content_type="model/stl" file="meshes/FR_HIP_LINK.STL" />
+    <mesh name="mesh_15" content_type="model/stl" file="meshes/FR_KNEE_LINK.STL" />
+    <mesh name="mesh_17" content_type="model/stl" file="meshes/FR_FOOT_LINK.STL" />
+    <mesh name="mesh_19" content_type="model/stl" file="meshes/RR_ABAD_LINK.STL" />
+    <mesh name="mesh_21" content_type="model/stl" file="meshes/RR_HIP_LINK.STL" />
+    <mesh name="mesh_23" content_type="model/stl" file="meshes/RR_KNEE_LINK.STL" />
+    <mesh name="mesh_25" content_type="model/stl" file="meshes/RR_FOOT_LINK.STL" />
+    <mesh name="mesh_27" content_type="model/stl" file="meshes/RL_ABAD_LINK.STL" />
+    <mesh name="mesh_29" content_type="model/stl" file="meshes/RL_HIP_LINK.STL" />
+    <mesh name="mesh_31" content_type="model/stl" file="meshes/RL_KNEE_LINK.STL" />
+    <mesh name="mesh_33" content_type="model/stl" file="meshes/RL_FOOT_LINK.STL" />
+  </asset>
+  <worldbody>
+    <body name="BASE_LINK">
+      <inertial pos="0.00542446 -0.000363302 0.00609086" quat="-0.0004418 0.711397 -0.000242992 0.70279" mass="6.26838" diaginertia="0.0992342 0.0849847 0.0273485" />
+      <joint type="free" />
+      <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_1" />
+      <body name="FL_ABAD_LINK" pos="0.17449 0.062 0">
+        <inertial pos="-0.0270745 -0.0154588 9.41679e-06" quat="0.600186 0.60017 0.373963 0.373798" mass="0.454098" diaginertia="0.000562658 0.000541021 0.00017585" />
+        <joint name="FL_ABAD_JOINT" pos="0 0 0" axis="1 0 0" range="-0.4887 0.4887" />
+        <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_3" />
+        <body name="FL_HIP_LINK" pos="0 0.097412 0">
+          <inertial pos="-0.00334388 -0.042909 -0.0216077" quat="0.961876 0.267908 0.0543528 0.00804932" mass="1.50165" diaginertia="0.00700226 0.00563861 0.0023263" />
+          <joint name="FL_HIP_JOINT" pos="0 0 0" axis="0 1 0" range="-1.1519 2.967" />
+          <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_5" />
+          <body name="FL_KNEE_LINK" pos="0 0 -0.2">
+            <inertial pos="-0.0394618 -4.07678e-05 -0.0493743" quat="0.672025 -0.218998 -0.219188 0.672591" mass="0.270529" diaginertia="0.00521349 0.00452384 0.000728981" />
+            <joint name="FL_KNEE_JOINT" pos="0 0 0" axis="0 1 0" range="-2.723 -0.602" />
+            <geom type="mesh" rgba="0.49804 0.49804 0.49804 1" mesh="mesh_7" />
+            <geom pos="0 0 -0.21366" quat="1 0 0 0" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_9" />
+          </body>
+        </body>
+      </body>
+      <body name="FR_ABAD_LINK" pos="0.17449 -0.062 0">
+        <inertial pos="-0.0270745 0.0154588 -9.41679e-06" quat="0.373963 0.373798 0.600186 0.60017" mass="0.454098" diaginertia="0.000562658 0.000541021 0.00017585" />
+        <joint name="FR_ABAD_JOINT" pos="0 0 0" axis="1 0 0" range="-0.4887 0.4887" />
+        <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_11" />
+        <body name="FR_HIP_LINK" pos="0 -0.097399 0">
+          <inertial pos="-0.00342445 0.0427303 -0.0223257" quat="0.964115 -0.259871 0.0534872 -0.00934672" mass="1.50799" diaginertia="0.00720259 0.00582228 0.00234676" />
+          <joint name="FR_HIP_JOINT" pos="0 0 0" axis="0 1 0" range="-1.1519 2.967" />
+          <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_13" />
+          <body name="FR_KNEE_LINK" pos="0 0 -0.2">
+            <inertial pos="-0.0394618 -4.07678e-05 -0.0493743" quat="0.672025 -0.218998 -0.219188 0.672591" mass="0.270529" diaginertia="0.00521349 0.00452384 0.000728981" />
+            <joint name="FR_KNEE_JOINT" pos="0 0 0" axis="0 1 0" range="-2.723 -0.602" />
+            <geom type="mesh" rgba="0.49804 0.49804 0.49804 1" mesh="mesh_15" />
+            <geom pos="0 0 -0.21366" quat="1 0 0 0" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_17" />
+          </body>
+        </body>
+      </body>
+      <body name="RR_ABAD_LINK" pos="-0.17449 -0.062 0">
+        <inertial pos="0.0270745 0.0154588 9.41679e-06" quat="0.60017 0.600186 0.373798 0.373963" mass="0.454098" diaginertia="0.000562658 0.000541021 0.00017585" />
+        <joint name="RR_ABAD_JOINT" pos="0 0 0" axis="1 0 0" range="-0.4887 0.4887" />
+        <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_19" />
+        <body name="RR_HIP_LINK" pos="0 -0.0974 0">
+          <inertial pos="-0.00342445 0.0427303 -0.0223257" quat="0.964115 -0.259871 0.0534872 -0.00934672" mass="1.50799" diaginertia="0.00720259 0.00582228 0.00234676" />
+          <joint name="RR_HIP_JOINT" pos="0 0 0" axis="0 1 0" range="-1.1519 2.967" />
+          <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_21" />
+          <body name="RR_KNEE_LINK" pos="0 0 -0.2">
+            <inertial pos="-0.0394618 -4.07678e-05 -0.0493743" quat="0.672025 -0.218998 -0.219188 0.672591" mass="0.270529" diaginertia="0.00521349 0.00452384 0.000728981" />
+            <joint name="RR_KNEE_JOINT" pos="0 0 0" axis="0 1 0" range="-2.723 -0.602" />
+            <geom type="mesh" rgba="0.49804 0.49804 0.49804 1" mesh="mesh_23" />
+            <geom pos="0 0 -0.21366" quat="1 0 0 0" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_25" />
+          </body>
+        </body>
+      </body>
+      <body name="RL_ABAD_LINK" pos="-0.17449 0.062 0">
+        <inertial pos="0.0270745 -0.0154588 -9.41679e-06" quat="0.373798 0.373963 0.60017 0.600186" mass="0.454098" diaginertia="0.000562658 0.000541021 0.00017585" />
+        <joint name="RL_ABAD_JOINT" pos="0 0 0" axis="1 0 0" range="-0.4887 0.4887" />
+        <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_27" />
+        <body name="RL_HIP_LINK" pos="0 0.097412 0">
+          <inertial pos="-0.00334388 -0.042909 -0.0216077" quat="0.961876 0.267908 0.0543528 0.00804932" mass="1.50165" diaginertia="0.00700226 0.00563861 0.0023263" />
+          <joint name="RL_HIP_JOINT" pos="0 0 0" axis="0 1 0" range="-1.1519 2.967" />
+          <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_29" />
+          <body name="RL_KNEE_LINK" pos="0 0 -0.2">
+            <inertial pos="-0.0394618 -4.07678e-05 -0.0493743" quat="0.672025 -0.218998 -0.219188 0.672591" mass="0.270529" diaginertia="0.00521349 0.00452384 0.000728981" />
+            <joint name="RL_KNEE_JOINT" pos="0 0 0" axis="0 1 0" range="-2.723 -0.602" />
+            <geom type="mesh" rgba="0.49804 0.49804 0.49804 1" mesh="mesh_31" />
+            <geom pos="0 0 -0.21366" quat="1 0 0 0" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_33" />
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

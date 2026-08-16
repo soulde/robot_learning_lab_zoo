@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="MagicBotZ1">
+  <compiler angle="radian" boundmass="1e-06" boundinertia="1e-08" meshdir=".." />
+  <asset>
+    <mesh name="mesh_5" content_type="model/stl" file="meshes/LINK_KNEE_PITCH_L.STL" />
+    <mesh name="mesh_12" content_type="model/stl" file="meshes/LINK_KNEE_PITCH_R.STL" />
+    <mesh name="mesh_16" content_type="model/stl" file="meshes/link_wy.STL" />
+    <mesh name="mesh_21" content_type="model/stl" file="meshes/link_la4.STL" />
+    <mesh name="mesh_23" content_type="model/stl" file="meshes/link_la5.STL" />
+    <mesh name="mesh_28" content_type="model/stl" file="meshes/link_ra4.STL" />
+    <mesh name="mesh_30" content_type="model/stl" file="meshes/link_ra5.STL" />
+  </asset>
+  <worldbody>
+    <body name="pelvis">
+      <inertial pos="0.00534252 0.000187711 0.208968" quat="0.999962 -5.64612e-06 0.00868398 -8.7174e-05" mass="14.0849" diaginertia="0.434191 0.412001 0.0568109" />
+      <joint type="free" />
+      <geom pos="0 0 0.0619" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_16" />
+      <body name="LINK_HIP_PITCH_L" pos="0 0.06875 0">
+        <inertial pos="-0.0002 0.0495 -0.0399" quat="0.951641 0.307212 0 0" mass="1.5089" diaginertia="0.002 0.00181623 0.00118377" />
+        <joint name="JOINT_HIP_PITCH_L" pos="0 0 0" axis="0 1 0" range="-2.7925 2.7925" actuatorfrcrange="-120 120" />
+        <body name="LINK_HIP_ROLL_L" pos="0 0.053724 -0.045579">
+          <inertial pos="0.0066 -0.0001 -0.0869" quat="0.968946 0 0.247273 0" mass="1.9215" diaginertia="0.00388217 0.0036 0.00221783" />
+          <joint name="JOINT_HIP_ROLL_L" pos="0 0 0" axis="1 0 0" range="-0.524 2.967" actuatorfrcrange="-120 120" />
+          <body name="LINK_HIP_YAW_L" pos="-0.00084052 0 -0.1255">
+            <inertial pos="-0.0188 -0.0041 -0.0763" quat="0.97117 -0.0537438 0.205083 -0.109001" mass="0.9002" diaginertia="0.00401624 0.00379582 0.00158794" />
+            <joint name="JOINT_HIP_YAW_L" pos="0 0 0" axis="0 0 1" range="-2.7925 2.7925" actuatorfrcrange="-120 120" />
+            <body name="LINK_KNEE_PITCH_L" pos="-0.052111 0 -0.13729">
+              <inertial pos="0.0009 -0.0007 -0.101" quat="0.70981 -3.95743e-05 -0.00819614 0.704345" mass="3.7275" diaginertia="0.0412046 0.0406046 0.00639073" />
+              <joint name="JOINT_KNEE_PITCH_L" pos="0 0 0" axis="0 1 0" range="0 2.653" actuatorfrcrange="-120 120" />
+              <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_5" />
+              <body name="LINK_ANKLE_PITCH_L" pos="0 0 -0.34">
+                <inertial pos="0.00094063 5.0401e-07 -0.0083154" quat="0.5 0.5 0.5 0.5" mass="0.048544" diaginertia="1.12e-05 1.1e-05 1.033e-05" />
+                <joint name="JOINT_ANKLE_PITCH_L" pos="0 0 0" axis="0 1 0" range="-0.873 0.524" actuatorfrcrange="-50 50" />
+                <body name="LINK_ANKLE_ROLL_L" pos="0 0 -0.018">
+                  <inertial pos="0.0413161 0.000482409 -0.031752" quat="0 0.724505 0 0.68927" mass="0.701902" diaginertia="0.00240502 0.00230003 0.000395033" />
+                  <joint name="JOINT_ANKLE_ROLL_L" pos="0 0 0" axis="1 0 0" range="-0.262 0.262" actuatorfrcrange="-50 50" />
+                  <geom size="0.10811 0.025 0.01" pos="0.0441 0 -0.04476" type="box" rgba="0.75294 0.75294 0.75294 1" />
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="LINK_HIP_PITCH_R" pos="0 -0.06875 0">
+        <inertial pos="-0.0002 -0.0492 -0.0399" quat="0.951641 -0.307212 0 0" mass="1.5089" diaginertia="0.002 0.00181623 0.00118377" />
+        <joint name="JOINT_HIP_PITCH_R" pos="0 0 0" axis="0 1 0" range="-2.7925 2.7925" actuatorfrcrange="-120 120" />
+        <body name="LINK_HIP_ROLL_R" pos="0 -0.053724 -0.045579">
+          <inertial pos="0.0069 0.0029 -0.0869" quat="0.968946 0 0.247273 0" mass="1.9215" diaginertia="0.00388217 0.0036 0.00221783" />
+          <joint name="JOINT_HIP_ROLL_R" pos="0 0 0" axis="1 0 0" range="-2.967 0.524" actuatorfrcrange="-120 120" />
+          <body name="LINK_HIP_YAW_R" pos="-0.00050599 0.0029213 -0.12555">
+            <inertial pos="-0.0188 0.0027 -0.0763" quat="0.97117 0.0537438 0.205083 0.109001" mass="0.9002" diaginertia="0.00401624 0.00379582 0.00158794" />
+            <joint name="JOINT_HIP_YAW_R" pos="0 0 0" axis="0 0 1" range="-2.7925 2.7925" actuatorfrcrange="-120 120" />
+            <body name="LINK_KNEE_PITCH_R" pos="-0.052111 0 -0.13729">
+              <inertial pos="0.0009 0.0009 -0.101" quat="0.705029 -0.00718436 -0.00106635 0.709141" mass="3.7292" diaginertia="0.0412026 0.0406047 0.00639274" />
+              <joint name="JOINT_KNEE_PITCH_R" pos="0 0 0" axis="0 1 0" range="0 2.653" actuatorfrcrange="-120 120" />
+              <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_12" />
+              <body name="LINK_ANKLE_PITCH_R" pos="0 0 -0.34">
+                <inertial pos="0.0009 0 -0.0083" quat="0.5 0.5 0.5 0.5" mass="0.048544" diaginertia="1.12e-05 1.1e-05 1.033e-05" />
+                <joint name="JOINT_ANKLE_PITCH_R" pos="0 0 0" axis="0 1 0" range="-0.873 0.524" actuatorfrcrange="-50 50" />
+                <body name="LINK_ANKLE_ROLL_R" pos="0 0 -0.018">
+                  <inertial pos="0.0412941 -0.0010615 -0.031752" quat="0 0.724505 0 0.68927" mass="0.701832" diaginertia="0.00240502 0.00230003 0.000395033" />
+                  <joint name="JOINT_ANKLE_ROLL_R" pos="0 0 0" axis="1 0 0" range="-0.262 0.262" actuatorfrcrange="-50 50" />
+                  <geom size="0.10811 0.025 0.01" pos="0.0441 0 -0.04476" type="box" rgba="0.75294 0.75294 0.75294 1" />
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="link_la1" pos="0 0.11963 0.3827">
+        <inertial pos="-0.0886769 0.0320405 -0.000580186" quat="0.198081 0.820061 0.401042 0.356972" mass="3.78468" diaginertia="0.06383 0.0616676 0.015242" />
+        <joint name="joint_la1" pos="0 0 0" axis="0 0.992546 -0.12187" range="-2.88 2.88" actuatorfrcrange="-50 50" />
+        <geom pos="0.01924 0.047187 -0.228786" quat="1 0 0 0" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_21" />
+        <geom pos="0.15724 0.047187 -0.246201" quat="1 0 0 0" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_23" />
+      </body>
+      <body name="link_ra1" pos="0 -0.11963 0.3827">
+        <inertial pos="-0.0752118 0.0103563 -0.0433094" quat="0.413635 0.732493 0.300593 0.449448" mass="3.79649" diaginertia="0.0704944 0.0655777 0.0148175" />
+        <joint name="joint_ra1" pos="0 0 0" axis="0 0.992546 -0.12187" range="-2.88 2.88" actuatorfrcrange="-50 50" />
+        <geom pos="0.01924 -0.047187 -0.228786" quat="1 0 0 0" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_28" />
+        <geom pos="0.15724 -0.047187 -0.246201" quat="1 0 0 0" type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="mesh_30" />
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

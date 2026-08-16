@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="gr1t1_description">
+  <compiler angle="radian" boundmass="1e-06" boundinertia="1e-08" meshdir=".." />
+  <worldbody>
+    <body name="base">
+      <joint type="free" />
+      <geom size="0.1 0.125" pos="0 0 0.3465" type="cylinder" rgba="0.752941 0.752941 0.752941 1" />
+      <geom size="0.03 0.055" pos="0 0.247895 0.294678" quat="0.995004 0.0998334 0 0" type="cylinder" rgba="0.752941 0.752941 0.752941 1" />
+      <geom size="0.035 0.085" pos="0.0356115 0.298303 0.0460688" quat="0.983831 0.0987124 -0.148692 -0.0149189" type="cylinder" rgba="0.752941 0.752941 0.752941 1" />
+      <geom size="0.05" pos="0.0922184 0.334672 -0.133275" quat="0.983831 0.0987124 -0.148692 -0.0149189" rgba="0.75294 0.75294 0.75294 1" />
+      <geom size="0.03 0.055" pos="0 -0.247915 0.294677" quat="0.995004 -0.0998334 0 0" type="cylinder" rgba="0.752941 0.752941 0.752941 1" />
+      <geom size="0.035 0.085" pos="0.0356102 -0.298294 0.0460821" quat="0.983831 -0.0987124 -0.148692 0.0149189" type="cylinder" rgba="0.752941 0.752941 0.752941 1" />
+      <geom size="0.05" pos="0.0922112 -0.334632 -0.133249" quat="0.983831 -0.0987124 -0.148692 0.0149189" rgba="0.75294 0.75294 0.75294 1" />
+      <body name="l_thigh_roll" pos="-0.047999 0.105 -0.057493">
+        <inertial pos="0.04163 3.4568e-05 -0.0021382" quat="0.575529 0.581908 -0.40597 0.406619" mass="1.1437" diaginertia="0.00117548 0.00100413 0.000943892" />
+        <joint name="l_hip_roll" pos="0 0 0" axis="1 0 1.221e-05" range="-0.09 0.79" actuatorfrcrange="-60 60" />
+        <body name="l_thigh_yaw" pos="0.048 0 -0.030499">
+          <inertial pos="0.00018348 0.046462 -0.10389" quat="0.704251 -0.0226446 -0.0453749 0.708138" mass="3.9888" diaginertia="0.0163385 0.0100158 0.00924336" />
+          <joint name="l_hip_yaw" pos="0 0 0" axis="1.2209e-05 6.8349e-05 1" range="-0.7 0.7" actuatorfrcrange="-45 45" />
+          <body name="l_thigh_pitch" pos="0 0 -0.11">
+            <inertial pos="0.0028493 -0.021688 -0.090886" quat="0.707411 -0.0125435 -0.0111264 0.706604" mass="6.369" diaginertia="0.0532352 0.0425096 0.0134363" />
+            <joint name="l_hip_pitch" pos="0 0 0" axis="0 1 -6.8349e-05" range="-1.75 0.7" actuatorfrcrange="-130 130" />
+            <geom size="0.05 0.125" pos="0 0 -0.15" type="cylinder" rgba="0.75294 0.75294 0.75294 1" />
+            <body name="l_shank_pitch" pos="0 2.4606e-05 -0.36">
+              <inertial pos="0.0024312 -2.9945e-05 -0.11554" quat="0.692137 0.00134576 0.00140217 0.721764" mass="2.1895" diaginertia="0.0162703 0.016117 0.00113627" />
+              <joint name="l_knee_pitch" pos="0 0 0" axis="0 1 6.8349e-05" range="-0.09 1.92" actuatorfrcrange="-130 130" />
+              <geom size="0.05 0.1" pos="0 0 -0.15" type="cylinder" rgba="0.75294 0.75294 0.75294 1" />
+              <body name="l_foot_pitch" pos="0 2.3239e-05 -0.34">
+                <inertial pos="0.034676 0.000314331 -0.0334936" quat="5.89238e-05 0.725218 -0.0004712 0.688519" mass="0.664335" diaginertia="0.00283063 0.0026195 0.000470536" />
+                <joint name="l_ankle_pitch" pos="0 0 0" axis="0 1 6.8349e-05" range="-1.05 0.52" actuatorfrcrange="-16 16" />
+                <geom name="l_foot_1" size="0.02 0.12" pos="0.05 0.02 -0.035" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.75294 0.75294 0.75294 1" />
+                <geom name="l_foot_2" size="0.02 0.12" pos="0.05 -0.02 -0.035" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.75294 0.75294 0.75294 1" />
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="r_thigh_roll" pos="-0.047999 -0.105 -0.057508">
+        <inertial pos="0.0416295 3.45678e-05 -0.00213824" quat="0.57555 0.581927 -0.405942 0.406589" mass="1.14367" diaginertia="0.00117548 0.00100417 0.000943891" />
+        <joint name="r_hip_roll" pos="0 0 0" axis="1 0 1.221e-05" range="-0.79 0.09" actuatorfrcrange="-60 60" />
+        <body name="r_thigh_yaw" pos="0.048 0 -0.030499">
+          <inertial pos="-0.00159762 -0.0464482 -0.103899" quat="0.709186 -0.0420808 -0.0194028 0.703497" mass="3.98882" diaginertia="0.0163388 0.0100142 0.00924469" />
+          <joint name="r_hip_yaw" pos="0 0 0" axis="1.2209e-05 6.8349e-05 1" range="-0.7 0.7" actuatorfrcrange="-45 45" />
+          <body name="r_thigh_pitch" pos="0 0 -0.11">
+            <inertial pos="0.002842 0.0217009 -0.0919987" quat="0.706586 -0.0113774 -0.0126258 0.707423" mass="6.36895" diaginertia="0.0532349 0.0424818 0.0134641" />
+            <joint name="r_hip_pitch" pos="0 0 0" axis="0 1 6.8349e-05" range="-1.75 0.7" actuatorfrcrange="-130 130" />
+            <geom size="0.05 0.125" pos="0 0 -0.15" type="cylinder" rgba="0.752941 0.752941 0.752941 1" />
+            <body name="r_shank_pitch" pos="0 2.4606e-05 -0.36">
+              <inertial pos="0.00236658 4.56188e-05 -0.115532" quat="0.71872 0.00154106 0.00120241 0.695296" mass="2.18947" diaginertia="0.0162708 0.0161183 0.00113536" />
+              <joint name="r_knee_pitch" pos="0 0 0" axis="0 1 -6.8349e-05" range="-0.09 1.92" actuatorfrcrange="-130 130" />
+              <geom size="0.05 0.1" pos="0 0 -0.15" type="cylinder" rgba="0.752941 0.752941 0.752941 1" />
+              <body name="r_foot_pitch" pos="0 2.3239e-05 -0.34">
+                <inertial pos="0.0385984 -0.000285473 -0.0346515" quat="-0.000154906 0.727179 0.000306418 0.686447" mass="0.660812" diaginertia="0.00294864 0.00273762 0.000474743" />
+                <joint name="r_ankle_pitch" pos="0 0 0" axis="0 1 6.8349e-05" range="-1.05 0.52" actuatorfrcrange="-16 16" />
+                <geom name="r_foot_1" size="0.02 0.12" pos="0.05 0.02 -0.035" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.75294 0.75294 0.75294 1" />
+                <geom name="r_foot_2" size="0.02 0.12" pos="0.05 -0.02 -0.035" quat="0.707105 0 0.707108 0" type="cylinder" rgba="0.75294 0.75294 0.75294 1" />
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

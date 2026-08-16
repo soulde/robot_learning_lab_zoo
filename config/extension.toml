@@ -2,17 +2,17 @@
 version = "0.1.0"
 category = "isaaclab"
 readme = "README.md"
-title = "Robot Lab Zoo"
+title = "Robot Learning Lab Zoo"
 author = "Soulde Developers"
 maintainer = "Soulde Developers"
 description = "Robot descriptions and simulation assets for Isaac Lab and MuJoCo"
-repository = "https://github.com/soulde/robot_lab_zoo"
+repository = "https://github.com/soulde/robot_learning_lab_zoo"
 keywords = ["isaaclab", "asset", "robot", "mujoco", "dr02"]
 
 [dependencies]
 "isaaclab" = {}
 
 [[python.module]]
-name = "robot_lab_zoo"
+name = "robot_learning_lab_zoo"
 
 [isaaclab_settings]

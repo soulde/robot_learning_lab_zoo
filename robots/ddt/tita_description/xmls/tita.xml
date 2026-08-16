@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="tita_ros2_control">
+  <compiler angle="radian" boundmass="1e-06" boundinertia="1e-08" meshdir=".." />
+  <worldbody>
+    <body name="base_link">
+      <inertial pos="0.0204521 3.63376e-06 0.01871" quat="0.521064 0.520817 -0.478529 0.477758" mass="13.2" diaginertia="0.0713022 0.0617858 0.0369343" />
+      <joint type="free" />
+      <geom size="0.235 0.15 0.095" pos="0 0 0.017" type="box" />
+      <body name="left_leg_1" pos="0 0.0895 0" quat="0.499998 0.5 0.500002 0.5">
+        <inertial pos="0.0016025 5.0253e-05 0.000638" quat="0.999804 -0.0010502 -0.019755 -9.57202e-05" mass="2.064" diaginertia="0.00430758 0.0029982 0.00226711" />
+        <joint name="joint_left_leg_1" pos="0 0 0" axis="0 0 1" range="-0.785398 0.785398" actuatorfrcrange="-60 60" />
+        <body name="left_leg_2" pos="0.1426 0 0" quat="0.499998 -0.5 0.500002 -0.5">
+          <inertial pos="0.021763 0.0019069 -0.027868" quat="-0.00931458 0.711777 0.0101084 0.702271" mass="3.0984" diaginertia="0.00883636 0.00648624 0.00297469" />
+          <joint name="joint_left_leg_2" pos="0 0 0" axis="0 0 1" range="-1.91986 3.49066" actuatorfrcrange="-60 60" />
+          <body name="left_leg_3" pos="0.2 0 0">
+            <inertial pos="0.095348 0.011698 0.001838" quat="0.03753 0.692169 -0.047281 0.719207" mass="0.57244" diaginertia="0.00342536 0.00324384 0.000258551" />
+            <joint name="joint_left_leg_3" pos="0 0 0" axis="0 0 1" range="-2.67035 -0.698132" actuatorfrcrange="-60 60" />
+            <geom size="0.1 0.035 0.025" pos="0.1 0.021 -0.002" quat="0.997856 0 0 -0.0654532" type="box" />
+            <body name="left_leg_4" pos="0.2 0 0.0514">
+              <inertial pos="-2.267e-06 -1.6471e-06 -0.00095616" quat="0.457615 0.539031 -0.457649 0.539066" mass="1.5094" diaginertia="0.0069049 0.00354775 0.00350415" />
+              <joint name="joint_left_leg_4" pos="0 0 0" axis="0 0 1" range="-999999 999999" actuatorfrcrange="-15 15" />
+              <geom size="0.0925 0.017" type="cylinder" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="right_leg_1" pos="0 -0.0895 0" quat="0.499998 0.5 0.500002 0.5">
+        <inertial pos="-0.0016025 5.0253e-05 0.00063801" quat="0.999804 -0.00104426 0.019755 9.54715e-05" mass="2.064" diaginertia="0.00430758 0.0029982 0.00226711" />
+        <joint name="joint_right_leg_1" pos="0 0 0" axis="0 0 1" range="-0.785398 0.785398" actuatorfrcrange="-60 60" />
+        <body name="right_leg_2" pos="-0.1426 0 0" quat="0.499998 -0.5 0.500002 -0.5">
+          <inertial pos="0.021763 0.0019065 0.027873" quat="-0.0101102 0.702272 0.00931581 0.711776" mass="3.0987" diaginertia="0.00883636 0.00648624 0.00297469" />
+          <joint name="joint_right_leg_2" pos="0 0 0" axis="0 0 1" range="-1.91986 3.49066" actuatorfrcrange="-60 60" />
+          <body name="right_leg_3" pos="0.2 0 0">
+            <inertial pos="0.095348 0.011698 -0.001838" quat="0.047281 0.719207 -0.03753 0.692169" mass="0.57244" diaginertia="0.00342536 0.00324384 0.000258551" />
+            <joint name="joint_right_leg_3" pos="0 0 0" axis="0 0 1" range="-2.67035 -0.698132" actuatorfrcrange="-60 60" />
+            <geom size="0.1 0.035 0.025" pos="0.1 0.021 -0.002" quat="0.997856 0 0 -0.0654532" type="box" />
+            <body name="right_leg_4" pos="0.2 0 -0.0514">
+              <inertial pos="-2.3798e-06 -1.5854e-06 0.00095595" quat="0.457221 0.539429 -0.457186 0.539395" mass="1.5094" diaginertia="0.0069047 0.00354767 0.00350403" />
+              <joint name="joint_right_leg_4" pos="0 0 0" axis="0 0 1" range="-999999 999999" actuatorfrcrange="-15 15" />
+              <geom size="0.0925 0.017" type="cylinder" />
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>
