@@ -55,3 +55,22 @@ def test_mjlab_exports_a_distinct_g1_dex3_entity() -> None:
     assert body_model.njnt == 30  # free root plus 29 actuated joints
     assert dex3_model.njnt == 44  # free root plus 43 actuated joints
 
+
+def test_isaaclab_dex3_configuration_adds_only_hand_actuation() -> None:
+    """Dropping hand actuation or adding it to the old model must fail."""
+    pytest.importorskip("isaaclab", exc_type=ImportError)
+    from robot_learning_lab_zoo.assets.isaaclab.unitree import (
+        UNITREE_G1_29DOF_ACTION_SCALE,
+        UNITREE_G1_29DOF_CFG,
+        UNITREE_G1_29DOF_DEX3_ACTION_SCALE,
+        UNITREE_G1_29DOF_DEX3_CFG,
+    )
+
+    assert UNITREE_G1_29DOF_DEX3_CFG is not UNITREE_G1_29DOF_CFG
+    assert UNITREE_G1_29DOF_CFG.spawn.asset_path.endswith("g1_29dof_rev_1_0.urdf")
+    assert UNITREE_G1_29DOF_DEX3_CFG.spawn.asset_path.endswith("g1_29dof_with_hand_rev_1_0.urdf")
+    assert "hands" not in UNITREE_G1_29DOF_CFG.actuators
+    assert UNITREE_G1_29DOF_DEX3_CFG.actuators["hands"].joint_names_expr == [".*_hand_.*_joint"]
+    assert all("_hand_" not in name for name in UNITREE_G1_29DOF_ACTION_SCALE)
+    assert ".*_hand_thumb_0_joint" in UNITREE_G1_29DOF_DEX3_ACTION_SCALE
+    assert ".*_hand_(?!thumb_0).*_joint" in UNITREE_G1_29DOF_DEX3_ACTION_SCALE

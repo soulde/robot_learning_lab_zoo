@@ -19,14 +19,16 @@ from robot_learning_lab_zoo import ROBOTS_DIR
 ##
 
 G1_XML: Path = ROBOTS_DIR / "unitree" / "g1_description" / "xmls" / "g1_29dof_rev_1_0.xml"
+G1_DEX3_XML: Path = ROBOTS_DIR / "unitree" / "g1_description" / "xmls" / "g1_29dof_with_hand_rev_1_0.xml"
 assert G1_XML.exists()
+assert G1_DEX3_XML.exists()
 G1_FOOT_SITE_NAMES = ("left_foot", "right_foot")
 G1_FOOT_BODY_NAMES = ("left_ankle_roll_link", "right_ankle_roll_link")
 G1_FOOT_GEOM_NAMES = tuple(f"{side}_foot{index}_collision" for side in ("left", "right") for index in range(1, 5))
 
 
-def get_spec() -> mujoco.MjSpec:
-    spec = mujoco.MjSpec.from_file(str(G1_XML))
+def _get_g1_spec(xml_path: Path) -> mujoco.MjSpec:
+    spec = mujoco.MjSpec.from_file(str(xml_path))
     for body in spec.bodies:
         for index, geom in enumerate(body.geoms):
             if not geom.name:
@@ -43,6 +45,14 @@ def get_spec() -> mujoco.MjSpec:
     spec.add_sensor(name="imu_ang_vel", type=mujoco.mjtSensor.mjSENS_GYRO,
                     objtype=mujoco.mjtObj.mjOBJ_SITE, objname="imu")
     return spec
+
+
+def get_spec() -> mujoco.MjSpec:
+    return _get_g1_spec(G1_XML)
+
+
+def get_g1_dex3_spec() -> mujoco.MjSpec:
+    return _get_g1_spec(G1_DEX3_XML)
 
 
 ##
@@ -187,6 +197,19 @@ G1_ACTUATOR_ANKLE = BuiltinPositionActuatorCfg(
     armature=ACTUATOR_5020.reflected_inertia * 2,
 )
 
+G1_DEX3_THUMB_ROOT_ACTUATOR = BuiltinPositionActuatorCfg(
+    target_names_expr=(".*_hand_thumb_0_joint",),
+    stiffness=20.0,
+    damping=0.5,
+    effort_limit=2.45,
+)
+G1_DEX3_FINGER_ACTUATOR = BuiltinPositionActuatorCfg(
+    target_names_expr=(".*_hand_(?!thumb_0).*_joint",),
+    stiffness=20.0,
+    damping=0.5,
+    effort_limit=1.4,
+)
+
 ##
 # Keyframe config.
 ##
@@ -280,6 +303,27 @@ UNITREE_G1_29DOF_CFG = EntityCfg(
     articulation=G1_ARTICULATION,
 )
 
+G1_DEX3_ARTICULATION = EntityArticulationInfoCfg(
+    actuators=G1_ARTICULATION.actuators + (G1_DEX3_THUMB_ROOT_ACTUATOR, G1_DEX3_FINGER_ACTUATOR),
+    soft_joint_pos_limit_factor=0.9,
+)
+
+UNITREE_G1_29DOF_DEX3_CFG = EntityCfg(
+    init_state=EntityCfg.InitialStateCfg(
+        pos=KNEES_BENT_KEYFRAME.pos,
+        joint_pos={
+            **KNEES_BENT_KEYFRAME.joint_pos,
+            ".*_hand_thumb_0_joint": 0.0,
+            ".*_hand_thumb_[12]_joint": 0.2,
+            ".*_hand_(index|middle)_[01]_joint": -0.2,
+        },
+        joint_vel={".*": 0.0},
+    ),
+    collisions=(FULL_COLLISION,),
+    spec_fn=get_g1_dex3_spec,
+    articulation=G1_DEX3_ARTICULATION,
+)
+
 
 H1_XML = ROBOTS_DIR / "unitree" / "h1_description" / "xmls" / "h1.xml"
 
@@ -346,6 +390,12 @@ for a in G1_ARTICULATION.actuators:
     assert e is not None
     for n in names:
         G1_ACTION_SCALE[n] = 0.25 * e / s
+
+G1_DEX3_ACTION_SCALE = dict(G1_ACTION_SCALE)
+for actuator in (G1_DEX3_THUMB_ROOT_ACTUATOR, G1_DEX3_FINGER_ACTUATOR):
+    assert actuator.effort_limit is not None
+    for name in actuator.target_names_expr:
+        G1_DEX3_ACTION_SCALE[name] = 0.25 * actuator.effort_limit / actuator.stiffness
 
 
 if __name__ == "__main__":

@@ -5,6 +5,8 @@
 Reference: https://github.com/unitreerobotics/unitree_ros
 """
 
+from copy import deepcopy
+
 import isaaclab.sim as sim_utils
 from isaaclab.actuators import DCMotorCfg, ImplicitActuatorCfg
 from isaaclab.assets.articulation import ArticulationCfg
@@ -634,3 +636,47 @@ for a in UNITREE_G1_29DOF_CFG.actuators.values():
     for n in names:
         if n in e and n in s and s[n]:
             UNITREE_G1_29DOF_ACTION_SCALE[n] = 0.25 * e[n] / s[n]
+
+
+# G1 29DoF body with two Unitree Dex3-1 seven-joint hands.
+DEX3_HAND_STIFFNESS = 20.0
+DEX3_HAND_DAMPING = 0.5
+UNITREE_G1_29DOF_DEX3_CFG = deepcopy(UNITREE_G1_29DOF_CFG)
+UNITREE_G1_29DOF_DEX3_CFG.spawn.asset_path = (
+    f"{ROBOTS_DIR}/unitree/g1_description/urdf/g1_29dof_with_hand_rev_1_0.urdf"
+)
+UNITREE_G1_29DOF_DEX3_CFG.init_state.joint_pos.update(
+    {
+        ".*_hand_thumb_0_joint": 0.0,
+        ".*_hand_thumb_1_joint": 0.2,
+        ".*_hand_thumb_2_joint": 0.2,
+        ".*_hand_index_0_joint": -0.2,
+        ".*_hand_index_1_joint": -0.2,
+        ".*_hand_middle_0_joint": -0.2,
+        ".*_hand_middle_1_joint": -0.2,
+    }
+)
+UNITREE_G1_29DOF_DEX3_CFG.actuators["hands"] = ImplicitActuatorCfg(
+    joint_names_expr=[".*_hand_.*_joint"],
+    effort_limit_sim={
+        ".*_hand_thumb_0_joint": 2.45,
+        ".*_hand_(?!thumb_0).*_joint": 1.4,
+    },
+    velocity_limit_sim={
+        ".*_hand_thumb_0_joint": 3.14,
+        ".*_hand_(?!thumb_0).*_joint": 12.0,
+    },
+    stiffness={
+        ".*_hand_thumb_0_joint": DEX3_HAND_STIFFNESS,
+        ".*_hand_(?!thumb_0).*_joint": DEX3_HAND_STIFFNESS,
+    },
+    damping=DEX3_HAND_DAMPING,
+)
+
+UNITREE_G1_29DOF_DEX3_ACTION_SCALE = deepcopy(UNITREE_G1_29DOF_ACTION_SCALE)
+UNITREE_G1_29DOF_DEX3_ACTION_SCALE.update(
+    {
+        ".*_hand_thumb_0_joint": 0.25 * 2.45 / DEX3_HAND_STIFFNESS,
+        ".*_hand_(?!thumb_0).*_joint": 0.25 * 1.4 / DEX3_HAND_STIFFNESS,
+    }
+)
