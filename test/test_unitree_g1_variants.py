@@ -3,7 +3,6 @@ from xml.etree import ElementTree
 
 import pytest
 
-
 ZOO_ROOT = Path(__file__).resolve().parents[1]
 G1_URDF_ROOT = ZOO_ROOT / "robots" / "unitree" / "g1_description" / "urdf"
 G1_URDF = G1_URDF_ROOT / "g1_29dof_rev_1_0.urdf"
