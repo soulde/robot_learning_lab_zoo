@@ -36,6 +36,12 @@ def get_spec() -> mujoco.MjSpec:
         for index, geom in enumerate(body.geoms[-4:], start=1):
             geom.name = f"{side}_foot{index}_collision"
         body.add_site(name=site_name, pos=[0.035, 0.0, -0.03], size=[0.01])
+    pelvis = spec.body("pelvis")
+    pelvis.add_site(name="imu", size=[0.01])
+    spec.add_sensor(name="imu_lin_vel", type=mujoco.mjtSensor.mjSENS_VELOCIMETER,
+                    objtype=mujoco.mjtObj.mjOBJ_SITE, objname="imu")
+    spec.add_sensor(name="imu_ang_vel", type=mujoco.mjtSensor.mjSENS_GYRO,
+                    objtype=mujoco.mjtObj.mjOBJ_SITE, objname="imu")
     return spec
 
 
@@ -272,6 +278,58 @@ UNITREE_G1_29DOF_CFG = EntityCfg(
     collisions=(FULL_COLLISION,),
     spec_fn=get_spec,
     articulation=G1_ARTICULATION,
+)
+
+
+H1_XML = ROBOTS_DIR / "unitree" / "h1_description" / "xmls" / "h1.xml"
+
+
+def get_h1_spec() -> mujoco.MjSpec:
+    spec = mujoco.MjSpec.from_file(str(H1_XML))
+    for body in spec.bodies:
+        for index, geom in enumerate(body.geoms):
+            if not geom.name:
+                geom.name = f"{body.name}_collision{index}"
+    for body_name, side in zip(("left_ankle_link", "right_ankle_link"), ("left", "right"), strict=True):
+        body = spec.body(body_name)
+        body.geoms[-1].name = f"{side}_foot_collision"
+        body.add_site(name=f"{side}_foot", size=[0.01])
+    torso = spec.body("torso_link")
+    torso.add_site(name="imu", size=[0.01])
+    spec.add_sensor(name="imu_lin_vel", type=mujoco.mjtSensor.mjSENS_VELOCIMETER,
+                    objtype=mujoco.mjtObj.mjOBJ_SITE, objname="imu")
+    spec.add_sensor(name="imu_ang_vel", type=mujoco.mjtSensor.mjSENS_GYRO,
+                    objtype=mujoco.mjtObj.mjOBJ_SITE, objname="imu")
+    return spec
+
+
+H1_COLLISION = CollisionCfg(
+    geom_names_expr=(".*_collision.*",), contype=1, conaffinity=1,
+    condim={"^(left|right)_foot_collision$": 3, ".*": 1},
+    priority={"^(left|right)_foot_collision$": 1, ".*": 0},
+    friction={"^(left|right)_foot_collision$": (0.6,)},
+)
+
+UNITREE_H1_CFG = EntityCfg(
+    init_state=EntityCfg.InitialStateCfg(
+        pos=(0.0, 0.0, 1.05),
+        joint_pos={".*": 0.0, ".*_hip_pitch_joint": -0.28, ".*_knee_joint": 0.79,
+                   ".*_ankle_joint": -0.52, ".*_shoulder_pitch_joint": 0.28, ".*_elbow_joint": 0.52},
+        joint_vel={".*": 0.0},
+    ),
+    collisions=(H1_COLLISION,), spec_fn=get_h1_spec,
+    articulation=EntityArticulationInfoCfg(
+        actuators=(
+            BuiltinPositionActuatorCfg(target_names_expr=(".*_hip_yaw_joint", ".*_hip_roll_joint"),
+                                       stiffness=150.0, damping=5.0, effort_limit=300.0),
+            BuiltinPositionActuatorCfg(target_names_expr=(".*_hip_pitch_joint", ".*_knee_joint", "torso_joint"),
+                                       stiffness=200.0, damping=5.0, effort_limit=300.0),
+            BuiltinPositionActuatorCfg(target_names_expr=(".*_ankle_joint",), stiffness=20.0,
+                                       damping=4.0, effort_limit=100.0),
+            BuiltinPositionActuatorCfg(target_names_expr=(".*_shoulder_.*_joint", ".*_elbow_joint"),
+                                       stiffness=40.0, damping=10.0, effort_limit=300.0),
+        ), soft_joint_pos_limit_factor=0.9,
+    ),
 )
 """Unitree G1 configuration for MJLab.
 

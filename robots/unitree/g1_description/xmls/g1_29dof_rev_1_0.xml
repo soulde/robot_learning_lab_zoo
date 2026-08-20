@@ -63,7 +63,7 @@
     <mesh name="mesh_58" content_type="model/stl" file="meshes/right_rubber_hand.STL" />
   </asset>
   <worldbody>
-    <body name="base">
+    <body name="pelvis">
       <joint type="free" />
       <geom size="0.0005 0.0005 0.0005" type="box" contype="0" conaffinity="0" group="1" density="0" />
       <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.2 0.2 0.2 1" mesh="mesh_0" />

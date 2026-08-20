@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="anymal">
+  <compiler angle="radian" boundmass="1e-06" boundinertia="1e-08" meshdir=".." />
+  <worldbody>
+    <body name="base">
+      <joint type="free" />
+      <geom size="0.447 0.08075 0.128" pos="0 0 0.016" type="box" />
+      <geom size="0.089 0.0741" pos="0.2353 0.08075 0" quat="0.707107 0 0.707107 0" type="cylinder" />
+      <geom size="0.089 0.0741" pos="0.2353 -0.08075 0" quat="0.707107 0 0.707107 0" type="cylinder" />
+      <geom size="0.089 0.0741" pos="-0.2353 0.08075 0" quat="0.707107 0 0.707107 0" type="cylinder" />
+      <geom size="0.089 0.0741" pos="-0.2353 -0.08075 0" quat="0.707107 0 0.707107 0" type="cylinder" />
+      <geom size="0.07 0.06775" pos="-0.31 0 0.1585" quat="0 0 0 1" type="cylinder" />
+      <geom size="0.08 0.0675 0.0075" pos="0.14253 0 0.092" type="box" />
+      <body name="LF_HIP" pos="0.304 0.109 0">
+        <inertial pos="0.035047 -0.00122677 0" quat="0.502484 0.502593 0.497424 0.497473" mass="0.36586" diaginertia="0.000558279 0.000443321 0.00023849" />
+        <joint name="LF_HAA" pos="0 0 0" axis="1 0 0" range="-0.785398 0.610865" actuatorfrcrange="-80 80" />
+        <body name="LF_THIGH" pos="0.069 0.006 0" quat="0.707107 0 0 -0.707107">
+          <inertial pos="-0.0669974 0.110833 -0.121809" quat="0.847424 0.355343 -0.0696405 0.388271" mass="5.1322" diaginertia="0.141486 0.135483 0.0206892" />
+          <joint name="LF_HFE" pos="0 0 0" axis="-1 0 0" range="-9.42478 9.42478" actuatorfrcrange="-80 80" />
+          <geom size="0.05375 0.0595" pos="-0.0595 0 0" quat="0.707107 0 0.707107 0" type="cylinder" />
+          <geom size="0.07 0.041565" pos="-0.105195 0 0" quat="0.5 0.5 0.5 0.5" type="cylinder" />
+          <geom size="0.0465 0.0315 0.1425" pos="-0.09513 0 -0.1425" quat="0.707107 0 0 0.707107" type="box" />
+          <geom size="0.07 0.041565" pos="-0.085065 0 -0.285" quat="0.5 0.5 0.5 0.5" type="cylinder" />
+          <geom size="0.05375 0.0595" pos="-0.121 0 -0.285" quat="0 -0.707107 0 0.707107" type="cylinder" />
+          <body name="LF_SHANK" pos="-0.1805 0 -0.285" quat="0 0 0 1">
+            <inertial pos="0.0219778 -0.032671 -0.0911529" quat="0.80705 -0.129258 0.0892927 0.569201" mass="0.79598" diaginertia="0.0192772 0.0192542 0.00249606" />
+            <joint name="LF_KFE" pos="0 0 0" axis="1 0 0" range="-9.42478 9.42478" actuatorfrcrange="-80 80" />
+            <geom size="0.071 0.02866" quat="0.5 0.5 -0.5 -0.5" type="cylinder" />
+            <geom size="0.066415 0.04151 0.02866" pos="0 -0.066415 0" quat="0.5 0.5 -0.5 -0.5" type="box" />
+            <geom size="0.0175 0.19786" pos="0.00535885 -0.1 -0.164217" quat="0.707107 0 0 -0.707107" type="cylinder" />
+            <geom size="0.031455" pos="0.0141088 -0.1 -0.362077" quat="0.707107 0 0 -0.707107" />
+          </body>
+        </body>
+      </body>
+      <body name="RF_HIP" pos="0.304 -0.109 0">
+        <inertial pos="0.035047 0.00122677 0" quat="0.497473 0.497424 0.502593 0.502484" mass="0.36586" diaginertia="0.000558279 0.000443321 0.00023849" />
+        <joint name="RF_HAA" pos="0 0 0" axis="1 0 0" range="-0.610865 0.785398" actuatorfrcrange="-80 80" />
+        <body name="RF_THIGH" pos="0.069 -0.006 0" quat="0.707107 0 0 0.707107">
+          <inertial pos="-0.0669974 0.0715537 -0.121809" quat="0.877206 0.44579 0.0354025 0.17472" mass="5.1322" diaginertia="0.18131 0.150268 0.0396147" />
+          <joint name="RF_HFE" pos="0 0 0" axis="1 0 0" range="-9.42478 9.42478" actuatorfrcrange="-80 80" />
+          <geom size="0.05375 0.0595" pos="-0.0595 0 0" quat="0.707107 0 0.707107 0" type="cylinder" />
+          <geom size="0.07 0.041565" pos="-0.105195 0 0" quat="0.5 0.5 -0.5 -0.5" type="cylinder" />
+          <geom size="0.0465 0.0315 0.1425" pos="-0.09513 0 -0.1425" quat="0.707107 0 0 -0.707107" type="box" />
+          <geom size="0.07 0.041565" pos="-0.085065 0 -0.285" quat="0.5 0.5 -0.5 -0.5" type="cylinder" />
+          <geom size="0.05375 0.0595" pos="-0.121 0 -0.285" quat="0 0.707107 0 -0.707107" type="cylinder" />
+          <body name="RF_SHANK" pos="-0.1805 0 -0.285" quat="0 0 0 -1">
+            <inertial pos="0.0219778 0.032671 -0.0911529" quat="0.569201 0.0892927 -0.129258 0.80705" mass="0.79598" diaginertia="0.0192772 0.0192542 0.00249606" />
+            <joint name="RF_KFE" pos="0 0 0" axis="-1 0 0" range="-9.42478 9.42478" actuatorfrcrange="-80 80" />
+            <geom size="0.071 0.02866" quat="0.5 0.5 0.5 0.5" type="cylinder" />
+            <geom size="0.066415 0.04151 0.02866" pos="0 0.066415 0" quat="0.5 0.5 0.5 0.5" type="box" />
+            <geom size="0.0175 0.19786" pos="0.00535885 0.1 -0.164217" quat="0.707107 0 0 0.707107" type="cylinder" />
+            <geom size="0.031455" pos="0.0141088 0.1 -0.362077" quat="0.707107 0 0 0.707107" />
+          </body>
+        </body>
+      </body>
+      <body name="LH_HIP" pos="-0.304 0.109 0" quat="0 0 0 -1">
+        <inertial pos="-0.0346698 -0.00125957 0" quat="0.497686 0.497737 0.502224 0.502332" mass="0.36586" diaginertia="0.000567894 0.000452912 0.000238466" />
+        <joint name="LH_HAA" pos="0 0 0" axis="-1 0 0" range="-0.785398 0.610865" actuatorfrcrange="-80 80" />
+        <body name="LH_THIGH" pos="0.069 -0.006 0" quat="-0.707107 0 0 -0.707107">
+          <inertial pos="-0.0668215 0.110833 -0.121809" quat="0.848941 0.356939 -0.0647204 0.384323" mass="5.1322" diaginertia="0.141716 0.135634 0.0205503" />
+          <joint name="LH_HFE" pos="0 0 0" axis="-1 0 0" range="-9.42478 9.42478" actuatorfrcrange="-80 80" />
+          <geom size="0.05375 0.0595" pos="-0.0595 0 0" quat="0.707107 0 0.707107 0" type="cylinder" />
+          <geom size="0.07 0.041565" pos="-0.105195 0 0" quat="0.5 0.5 0.5 0.5" type="cylinder" />
+          <geom size="0.0465 0.0315 0.1425" pos="-0.09513 0 -0.1425" quat="0.707107 0 0 0.707107" type="box" />
+          <geom size="0.07 0.041565" pos="-0.085065 0 -0.285" quat="0.5 0.5 0.5 0.5" type="cylinder" />
+          <geom size="0.05375 0.0595" pos="-0.121 0 -0.285" quat="0 -0.707107 0 0.707107" type="cylinder" />
+          <body name="LH_SHANK" pos="-0.1805 0 -0.285" quat="0 0 0 1">
+            <inertial pos="-0.00540503 0.0417739 -0.0887313" quat="0.576666 0.0236612 -0.146695 0.803354" mass="0.79598" diaginertia="0.0186219 0.0179968 0.00220746" />
+            <joint name="LH_KFE" pos="0 0 0" axis="1 0 0" range="-9.42478 9.42478" actuatorfrcrange="-80 80" />
+            <geom size="0.071 0.02866" quat="0.5 0.5 -0.5 -0.5" type="cylinder" />
+            <geom size="0.066415 0.04151 0.02866" pos="0 0.066415 0" quat="0.5 0.5 -0.5 -0.5" type="box" />
+            <geom size="0.0175 0.19786" pos="0.00535885 0.1 -0.164217" quat="0.707107 0 0 -0.707107" type="cylinder" />
+            <geom size="0.031455" pos="0.0141088 0.1 -0.362077" quat="0.707107 0 0 -0.707107" />
+          </body>
+        </body>
+      </body>
+      <body name="RH_HIP" pos="-0.304 -0.109 0" quat="0 0 0 -1">
+        <inertial pos="-0.0346698 0.00125957 0" quat="0.502332 0.502224 0.497737 0.497686" mass="0.36586" diaginertia="0.000567894 0.000452912 0.000238466" />
+        <joint name="RH_HAA" pos="0 0 0" axis="-1 0 0" range="-0.610865 0.785398" actuatorfrcrange="-80 80" />
+        <body name="RH_THIGH" pos="0.069 0.006 0" quat="0.707107 0 0 -0.707107">
+          <inertial pos="-0.0668215 0.0715537 -0.121809" quat="0.879005 0.444872 0.0396475 0.166936" mass="5.1322" diaginertia="0.180979 0.150741 0.0397139" />
+          <joint name="RH_HFE" pos="0 0 0" axis="1 0 0" range="-9.42478 9.42478" actuatorfrcrange="-80 80" />
+          <geom size="0.05375 0.0595" pos="-0.0595 0 0" quat="0.707107 0 0.707107 0" type="cylinder" />
+          <geom size="0.07 0.041565" pos="-0.105195 0 0" quat="0.5 0.5 -0.5 -0.5" type="cylinder" />
+          <geom size="0.0465 0.0315 0.1425" pos="-0.09513 0 -0.1425" quat="0.707107 0 0 -0.707107" type="box" />
+          <geom size="0.07 0.041565" pos="-0.085065 0 -0.285" quat="0.5 0.5 -0.5 -0.5" type="cylinder" />
+          <geom size="0.05375 0.0595" pos="-0.121 0 -0.285" quat="0 0.707107 0 -0.707107" type="cylinder" />
+          <body name="RH_SHANK" pos="-0.1805 0 -0.285" quat="0 0 0 -1">
+            <inertial pos="-0.00540503 -0.0417739 -0.0887313" quat="0.803354 -0.146695 0.0236612 0.576666" mass="0.79598" diaginertia="0.0186219 0.0179968 0.00220746" />
+            <joint name="RH_KFE" pos="0 0 0" axis="-1 0 0" range="-9.42478 9.42478" actuatorfrcrange="-80 80" />
+            <geom size="0.071 0.02866" quat="0.5 0.5 0.5 0.5" type="cylinder" />
+            <geom size="0.066415 0.04151 0.02866" pos="0 -0.066415 0" quat="0.5 0.5 0.5 0.5" type="box" />
+            <geom size="0.0175 0.19786" pos="0.00535885 -0.1 -0.164217" quat="0.707107 0 0 0.707107" type="cylinder" />
+            <geom size="0.031455" pos="0.0141088 -0.1 -0.362077" quat="0.707107 0 0 0.707107" />
+          </body>
+        </body>
+      </body>
+      <body name="inspection_payload_pan" pos="0.14253 0 0.115">
+        <inertial pos="0.00068 -0.00349 0.07578" quat="0.730414 0.6591 -0.113342 0.138691" mass="3.18886" diaginertia="0.0273657 0.0213468 0.0150652" />
+        <joint name="inspection_payload_mount_to_pan" pos="0 0 0" axis="0 0 1" range="-2.6 2.6" actuatorfrcrange="-20 20" damping="0.05" frictionloss="0.01" />
+        <geom size="0.09 0.12 0.105" pos="0 0 0.125" type="box" />
+        <body name="inspection_payload_tilt" pos="0.03 0 0.152">
+          <inertial pos="0.00534011 -0.00379011 -0.00091" quat="0.998391 0.0478847 -0.00991053 0.0287165" mass="2.08401" diaginertia="0.00744055 0.00619115 0.00592991" />
+          <joint name="inspection_payload_pan_to_tilt" pos="0 0 0" axis="0 1 0" range="-1.5708 1.5708" actuatorfrcrange="-20 20" damping="0.1" frictionloss="0.5" />
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

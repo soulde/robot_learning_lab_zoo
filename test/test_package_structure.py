@@ -1,6 +1,5 @@
-from pathlib import Path
 import re
-
+from pathlib import Path
 
 ASSET_ROOT = Path(__file__).resolve().parents[1]
 PACKAGE_ROOT = ASSET_ROOT / "robot_learning_lab_zoo"
@@ -10,6 +9,7 @@ MJLAB_ASSETS_ROOT = PACKAGE_ROOT / "assets" / "mjlab"
 
 EXPECTED_MANUFACTURERS = {
     "agibot",
+    "anybotics",
     "booster",
     "ddt",
     "deeprobotics",
@@ -61,9 +61,7 @@ def test_asset_package_owns_complete_dr02_models() -> None:
 
 def test_zoo_contains_all_manufacturers_and_asset_modules() -> None:
     manufacturers = {path.name for path in ROBOTS_ROOT.iterdir() if path.is_dir()}
-    asset_modules = {
-        path.name for path in ISAACLAB_ASSETS_ROOT.glob("*.py") if path.name != "__init__.py"
-    }
+    asset_modules = {path.name for path in ISAACLAB_ASSETS_ROOT.glob("*.py") if path.name != "__init__.py"}
 
     assert manufacturers == EXPECTED_MANUFACTURERS
     assert asset_modules == EXPECTED_ASSET_MODULES
