@@ -20,8 +20,12 @@ from robot_learning_lab_zoo import ROBOTS_DIR
 
 G1_XML: Path = ROBOTS_DIR / "unitree" / "g1_description" / "xmls" / "g1_29dof_rev_1_0.xml"
 G1_DEX3_XML: Path = ROBOTS_DIR / "unitree" / "g1_description" / "xmls" / "g1_29dof_with_hand_rev_1_0.xml"
+G1_DEX3_BACKPACK_XML: Path = (
+    ROBOTS_DIR / "unitree" / "g1_description" / "xmls" / "g1_29dof_with_hand_backpack_1kg.xml"
+)
 assert G1_XML.exists()
 assert G1_DEX3_XML.exists()
+assert G1_DEX3_BACKPACK_XML.exists()
 G1_FOOT_SITE_NAMES = ("left_foot", "right_foot")
 G1_FOOT_BODY_NAMES = ("left_ankle_roll_link", "right_ankle_roll_link")
 G1_FOOT_GEOM_NAMES = tuple(f"{side}_foot{index}_collision" for side in ("left", "right") for index in range(1, 5))
@@ -53,6 +57,10 @@ def get_spec() -> mujoco.MjSpec:
 
 def get_g1_dex3_spec() -> mujoco.MjSpec:
     return _get_g1_spec(G1_DEX3_XML)
+
+
+def get_g1_dex3_backpack_spec() -> mujoco.MjSpec:
+    return _get_g1_spec(G1_DEX3_BACKPACK_XML)
 
 
 ##
@@ -324,6 +332,9 @@ UNITREE_G1_29DOF_DEX3_CFG = EntityCfg(
     articulation=G1_DEX3_ARTICULATION,
 )
 
+UNITREE_G1_29DOF_DEX3_BACKPACK_CFG = deepcopy(UNITREE_G1_29DOF_DEX3_CFG)
+UNITREE_G1_29DOF_DEX3_BACKPACK_CFG.spec_fn = get_g1_dex3_backpack_spec
+
 
 H1_XML = ROBOTS_DIR / "unitree" / "h1_description" / "xmls" / "h1.xml"
 
@@ -396,6 +407,8 @@ for actuator in (G1_DEX3_THUMB_ROOT_ACTUATOR, G1_DEX3_FINGER_ACTUATOR):
     assert actuator.effort_limit is not None
     for name in actuator.target_names_expr:
         G1_DEX3_ACTION_SCALE[name] = 0.25 * actuator.effort_limit / actuator.stiffness
+
+G1_DEX3_BACKPACK_ACTION_SCALE = dict(G1_DEX3_ACTION_SCALE)
 
 
 if __name__ == "__main__":

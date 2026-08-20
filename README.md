@@ -30,6 +30,10 @@ with two actuated Unitree Dex3 three-finger hands, import
 `UNITREE_G1_29DOF_DEX3_CFG` instead. The Dex3 asset models 43 actuated joints
 and contact geometry; tactile-array simulation is not included.
 
+`UNITREE_G1_29DOF_DEX3_BACKPACK_CFG` is a separate Dex3 variant with a fixed,
+visible, collidable 0.25 x 0.20 x 0.30 m cuboid on the torso. Its mass is 1 kg;
+the original G1 and Dex3 configurations are unchanged.
+
 The package exposes stable paths for each model:
 
 ```python

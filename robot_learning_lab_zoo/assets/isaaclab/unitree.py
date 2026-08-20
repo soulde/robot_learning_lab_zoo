@@ -680,3 +680,9 @@ UNITREE_G1_29DOF_DEX3_ACTION_SCALE.update(
         ".*_hand_(?!thumb_0).*_joint": 0.25 * 1.4 / DEX3_HAND_STIFFNESS,
     }
 )
+
+UNITREE_G1_29DOF_DEX3_BACKPACK_CFG = deepcopy(UNITREE_G1_29DOF_DEX3_CFG)
+UNITREE_G1_29DOF_DEX3_BACKPACK_CFG.spawn.asset_path = (
+    f"{ROBOTS_DIR}/unitree/g1_description/urdf/g1_29dof_with_hand_backpack_1kg.urdf"
+)
+UNITREE_G1_29DOF_DEX3_BACKPACK_ACTION_SCALE = deepcopy(UNITREE_G1_29DOF_DEX3_ACTION_SCALE)

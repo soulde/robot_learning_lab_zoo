@@ -7,6 +7,7 @@ ZOO_ROOT = Path(__file__).resolve().parents[1]
 G1_URDF_ROOT = ZOO_ROOT / "robots" / "unitree" / "g1_description" / "urdf"
 G1_URDF = G1_URDF_ROOT / "g1_29dof_rev_1_0.urdf"
 G1_DEX3_URDF = G1_URDF_ROOT / "g1_29dof_with_hand_rev_1_0.urdf"
+G1_DEX3_BACKPACK_URDF = G1_URDF_ROOT / "g1_29dof_with_hand_backpack_1kg.urdf"
 DEX3_JOINT_SUFFIXES = {
     "thumb_0_joint",
     "thumb_1_joint",
@@ -53,6 +54,40 @@ def test_mjlab_exports_a_distinct_g1_dex3_entity() -> None:
     dex3_model = UNITREE_G1_29DOF_DEX3_CFG.spec_fn().compile()
     assert body_model.njnt == 30  # free root plus 29 actuated joints
     assert dex3_model.njnt == 44  # free root plus 43 actuated joints
+
+
+def test_g1_dex3_backpack_urdf_adds_only_the_fixed_1kg_payload() -> None:
+    root = ElementTree.parse(G1_DEX3_BACKPACK_URDF).getroot()
+    joint = root.find("joint[@name='backpack_joint']")
+    link = root.find("link[@name='backpack_link']")
+
+    assert joint is not None and link is not None
+    assert joint.get("type") == "fixed"
+    assert joint.find("parent").get("link") == "torso_link"
+    assert joint.find("child").get("link") == "backpack_link"
+    assert joint.find("origin").get("xyz") == "-0.12 0 0.05"
+    assert link.find("inertial/mass").get("value") == "1.0"
+    assert link.find("visual/geometry/box").get("size") == "0.25 0.20 0.30"
+    assert link.find("collision/geometry/box").get("size") == "0.25 0.20 0.30"
+    inertia = link.find("inertial/inertia")
+    assert inertia.get("ixx") == "0.0108333333"
+    assert inertia.get("iyy") == "0.0133333333"
+    assert inertia.get("izz") == "0.0085416667"
+    assert _actuated_joint_names(G1_DEX3_BACKPACK_URDF) == _actuated_joint_names(G1_DEX3_URDF)
+
+
+def test_mjlab_backpack_adds_exactly_1kg_without_an_actuated_joint() -> None:
+    pytest.importorskip("mjlab", exc_type=ImportError)
+    from robot_learning_lab_zoo.assets.mjlab import (
+        UNITREE_G1_29DOF_DEX3_BACKPACK_CFG,
+        UNITREE_G1_29DOF_DEX3_CFG,
+    )
+
+    dex3_model = UNITREE_G1_29DOF_DEX3_CFG.spec_fn().compile()
+    backpack_model = UNITREE_G1_29DOF_DEX3_BACKPACK_CFG.spec_fn().compile()
+    assert backpack_model.njnt == dex3_model.njnt == 44
+    assert backpack_model.body("backpack_link").id > 0
+    assert backpack_model.body_mass.sum() == pytest.approx(dex3_model.body_mass.sum() + 1.0)
 
 
 def test_isaaclab_dex3_configuration_adds_only_hand_actuation() -> None:

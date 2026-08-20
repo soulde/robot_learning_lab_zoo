@@ -23,4 +23,4 @@ def test_all_exported_mjlab_entity_specs_compile() -> None:
             assert model.nbody > 1, f"{module_info.name}.{name} compiled without articulated bodies"
             compiled_configs.append(f"{module_info.name}.{name}")
 
-    assert len(compiled_configs) == 27
+    assert len(compiled_configs) == 28
