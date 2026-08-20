@@ -1,0 +1,2 @@
+include config/extension.toml
+recursive-include robots *

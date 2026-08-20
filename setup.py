@@ -3,7 +3,7 @@
 from pathlib import Path
 
 import toml
-from setuptools import setup
+from setuptools import find_namespace_packages, setup
 
 
 EXTENSION_ROOT = Path(__file__).resolve().parent
@@ -16,13 +16,8 @@ setup(
     maintainer=EXTENSION_DATA["package"]["maintainer"],
     description=EXTENSION_DATA["package"]["description"],
     keywords=EXTENSION_DATA["package"]["keywords"],
-    packages=[
-        "robot_learning_lab_zoo",
-        "robot_learning_lab_zoo.assets",
-        "robot_learning_lab_zoo.assets.isaaclab",
-        "robot_learning_lab_zoo.assets.mjlab",
-    ],
-    package_data={"robot_learning_lab_zoo": ["configs/*.json"]},
+    packages=find_namespace_packages(include=["robot_learning_lab_zoo*", "robots*"]),
+    package_data={"robot_learning_lab_zoo": ["configs/*.json"], "robots": ["**/*"]},
     install_requires=["numpy>=1.23"],
     extras_require={
         "isaaclab": ["isaaclab"],

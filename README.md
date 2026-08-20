@@ -25,6 +25,11 @@ from robot_learning_lab_zoo.assets.mjlab.unitree import UNITREE_G1_29DOF_CFG
 robot_cfg = deepcopy(UNITREE_G1_29DOF_CFG)
 ```
 
+`UNITREE_G1_29DOF_CFG` remains the existing 29DoF G1 model. For the G1 body
+with two actuated Unitree Dex3 three-finger hands, import
+`UNITREE_G1_29DOF_DEX3_CFG` instead. The Dex3 asset models 43 actuated joints
+and contact geometry; tactile-array simulation is not included.
+
 The package exposes stable paths for each model:
 
 ```python
