@@ -55,12 +55,21 @@ def get_spec() -> mujoco.MjSpec:
     return _get_g1_spec(G1_XML)
 
 
+def _get_g1_dex3_spec(xml_path: Path) -> mujoco.MjSpec:
+    spec = _get_g1_spec(xml_path)
+    # The Dex3 XMLs ship motor actuators named after joints; mjlab adds its
+    # own position actuators with the same names, so drop the built-ins.
+    for actuator in list(spec.actuators):
+        spec.delete(actuator)
+    return spec
+
+
 def get_g1_dex3_spec() -> mujoco.MjSpec:
-    return _get_g1_spec(G1_DEX3_XML)
+    return _get_g1_dex3_spec(G1_DEX3_XML)
 
 
 def get_g1_dex3_backpack_spec() -> mujoco.MjSpec:
-    return _get_g1_spec(G1_DEX3_BACKPACK_XML)
+    return _get_g1_dex3_spec(G1_DEX3_BACKPACK_XML)
 
 
 ##
