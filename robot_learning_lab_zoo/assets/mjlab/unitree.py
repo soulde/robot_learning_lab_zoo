@@ -219,12 +219,14 @@ G1_DEX3_THUMB_ROOT_ACTUATOR = BuiltinPositionActuatorCfg(
     stiffness=20.0,
     damping=0.5,
     effort_limit=2.45,
+    armature=0.01,
 )
 G1_DEX3_FINGER_ACTUATOR = BuiltinPositionActuatorCfg(
     target_names_expr=(".*_hand_(?!thumb_0).*_joint",),
     stiffness=20.0,
     damping=0.5,
     effort_limit=1.4,
+    armature=0.01,
 )
 
 ##
@@ -325,6 +327,17 @@ G1_DEX3_ARTICULATION = EntityArticulationInfoCfg(
     soft_joint_pos_limit_factor=0.9,
 )
 
+# Hand links collide as raw meshes; finger mesh-mesh contacts destabilize
+# the solver. Locomotion does not need hand collisions, so exclude them.
+DEX3_COLLISION = CollisionCfg(
+    geom_names_expr=(r"^(?!.*hand).*_collision.*$",),
+    contype=1,
+    conaffinity=1,
+    condim={r"^(left|right)_foot[1-4]_collision$": 3, r"^(?!.*hand).*_collision$": 1},
+    priority={r"^(left|right)_foot[1-4]_collision$": 1, ".*": 0},
+    friction={r"^(left|right)_foot[1-4]_collision$": (0.6,)},
+)
+
 UNITREE_G1_29DOF_DEX3_CFG = EntityCfg(
     init_state=EntityCfg.InitialStateCfg(
         pos=KNEES_BENT_KEYFRAME.pos,
@@ -336,7 +349,7 @@ UNITREE_G1_29DOF_DEX3_CFG = EntityCfg(
         },
         joint_vel={".*": 0.0},
     ),
-    collisions=(FULL_COLLISION,),
+    collisions=(DEX3_COLLISION,),
     spec_fn=get_g1_dex3_spec,
     articulation=G1_DEX3_ARTICULATION,
 )
