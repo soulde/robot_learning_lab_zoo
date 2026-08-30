@@ -328,12 +328,13 @@ G1_DEX3_ARTICULATION = EntityArticulationInfoCfg(
 )
 
 # Hand links collide as raw meshes; finger mesh-mesh contacts destabilize
-# the solver. Locomotion does not need hand collisions, so exclude them.
+# the solver. The welded backpack box interpenetrates the torso meshes at
+# spawn. Locomotion needs neither, so exclude both from collisions.
 DEX3_COLLISION = CollisionCfg(
-    geom_names_expr=(r"^(?!.*hand).*_collision.*$",),
+    geom_names_expr=(r"^(?!.*(hand|backpack)).*_collision.*$",),
     contype=1,
     conaffinity=1,
-    condim={r"^(left|right)_foot[1-4]_collision$": 3, r"^(?!.*hand).*_collision$": 1},
+    condim={r"^(left|right)_foot[1-4]_collision$": 3, r"^(?!.*(hand|backpack)).*_collision$": 1},
     priority={r"^(left|right)_foot[1-4]_collision$": 1, ".*": 0},
     friction={r"^(left|right)_foot[1-4]_collision$": (0.6,)},
 )
