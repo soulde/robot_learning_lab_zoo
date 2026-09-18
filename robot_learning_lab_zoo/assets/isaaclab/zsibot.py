@@ -13,8 +13,9 @@ from robot_learning_lab_zoo import ROBOTS_DIR
 
 ZSIBOT_ZSL1_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/zsibot/zsl1_description/urdf/zsl1.urdf",
         activate_contact_sensors=True,
@@ -59,8 +60,9 @@ ZSIBOT_ZSL1_CFG = ArticulationCfg(
 
 ZSIBOT_ZSL1W_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/zsibot/zsl1w_description/urdf/zsl1w.urdf",
         activate_contact_sensors=True,

@@ -15,6 +15,7 @@ from robot_learning_lab_zoo import ROBOTS_DIR
 
 MAGICLAB_BOT_GEN1_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
         merge_fixed_joints=False,
         replace_cylinders_with_capsules=False,
@@ -102,6 +103,7 @@ MAGICLAB_BOT_GEN1_CFG = ArticulationCfg(
 
 MAGICLAB_BOT_Z1_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
         merge_fixed_joints=False,
         replace_cylinders_with_capsules=False,
@@ -189,6 +191,7 @@ MAGICLAB_BOT_Z1_CFG = ArticulationCfg(
 
 MAGICDOG_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
         merge_fixed_joints=False,
         replace_cylinders_with_capsules=False,
@@ -238,8 +241,9 @@ MAGICDOG_CFG = ArticulationCfg(
 
 MAGICDOG_W_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/magiclab/magicdog_w/urdf/magicdog_w.urdf",
         activate_contact_sensors=True,

@@ -23,8 +23,9 @@ from robot_learning_lab_zoo import ROBOTS_DIR
 
 FFTAI_GR1T1_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/fftai/gr1t1_description/urdf/GR1T1.urdf",
         activate_contact_sensors=True,

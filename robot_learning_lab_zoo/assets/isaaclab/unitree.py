@@ -20,8 +20,9 @@ from robot_learning_lab_zoo import ROBOTS_DIR
 
 UNITREE_A1_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/unitree/a1_description/urdf/a1.urdf",
         activate_contact_sensors=True,
@@ -72,8 +73,9 @@ Note: Specifications taken from: https://www.trossenrobotics.com/a1-quadruped#sp
 
 UNITREE_GO2_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/unitree/go2_description/urdf/go2_description.urdf",
         activate_contact_sensors=True,
@@ -122,8 +124,9 @@ UNITREE_GO2_CFG = ArticulationCfg(
 
 UNITREE_GO2W_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/unitree/go2w_description/urdf/go2w_description.urdf",
         activate_contact_sensors=True,
@@ -180,8 +183,9 @@ UNITREE_GO2W_CFG = ArticulationCfg(
 
 UNITREE_B2_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/unitree/b2_description/urdf/b2_description.urdf",
         activate_contact_sensors=True,
@@ -249,8 +253,9 @@ UNITREE_B2_CFG = ArticulationCfg(
 
 UNITREE_B2W_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/unitree/b2w_description/urdf/b2w_description.urdf",
         activate_contact_sensors=True,
@@ -328,7 +333,7 @@ UNITREE_B2W_CFG = ArticulationCfg(
 # UNITREE_G1_29DOF_CFG = ArticulationCfg(
 #     spawn=sim_utils.UrdfFileCfg(
 #         fix_base=False,
-#         merge_fixed_joints=True,
+#         merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
 #         replace_cylinders_with_capsules=False,
 #         asset_path=f"{ROBOTS_DIR}/unitree/g1_description/urdf/g1_29dof_rev_1_0.urdf",
 #         activate_contact_sensors=True,
@@ -467,6 +472,7 @@ DAMPING_4010 = 2.0 * DAMPING_RATIO * ARMATURE_4010 * NATURAL_FREQ
 
 UNITREE_G1_29DOF_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
         replace_cylinders_with_capsules=True,
         asset_path=f"{ROBOTS_DIR}/unitree/g1_description/urdf/g1_29dof_rev_1_0.urdf",

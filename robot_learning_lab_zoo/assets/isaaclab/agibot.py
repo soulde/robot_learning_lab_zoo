@@ -16,6 +16,7 @@ from robot_learning_lab_zoo import ROBOTS_DIR
 
 AGIBOT_D1_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
         merge_fixed_joints=False,
         replace_cylinders_with_capsules=False,

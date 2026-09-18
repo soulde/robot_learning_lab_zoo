@@ -20,8 +20,9 @@ _USER_TMP_DIR = _require_user_tmp_dir()
 
 DEEPROBOTICS_LITE3_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/deeprobotics/lite3_description/urdf/lite3.urdf",
         activate_contact_sensors=True,
@@ -75,8 +76,9 @@ DEEPROBOTICS_LITE3_CFG = ArticulationCfg(
 
 DEEPROBOTICS_M20_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/deeprobotics/m20_description/urdf/m20.urdf",
         activate_contact_sensors=True,
@@ -133,8 +135,9 @@ DEEPROBOTICS_M20_CFG = ArticulationCfg(
 
 DEEPROBOTICS_DR02_STANDARD_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
+        run_asset_transformer=False,
         fix_base=False,
-        merge_fixed_joints=True,
+        merge_fixed_joints=False,  # importer 3.0 ignores dont_collapse; keep foot links as bodies,
         replace_cylinders_with_capsules=False,
         asset_path=f"{ROBOTS_DIR}/deeprobotics/dr02_standard_description/urdf/dr02_std.urdf",
         activate_contact_sensors=True,
